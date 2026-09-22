@@ -1,9 +1,9 @@
 {
   "mongoURI": "mongodb+srv://username:pass@cluster0.8ib7j.mongodb.net/facebook_bot?retryWrites=true&w=majority&appName=Cluster0",
   "appstateSyncMinutes": 10,
-  "ownerID": "100037743553265",
+  "ownerID": "100080077652459",
   "adminIDs": [
-    "100037743553265",
+    "100080077652459",
     "ADMIN_ID_2"
   ],
   "supportIDs": [
@@ -11,7 +11,7 @@
     "SUPPORT_ID_2"
   ],
   "adminInboxThreadID": "6567071300016227",
-  "prefix": "/",
+  "prefix": "!",
   "fcaOptions": {
     "forceLogin": false,
     "updatePresence": true,
@@ -25,7 +25,7 @@
     "autoReconnect": true,
     "userAgent": "Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 CrKey/1.54.250320"
   },
-  "botNickname": "FB Bot",
+  "botNickname": "Angela",
   "commandEnabled": true,
   "eventEnabled": true,
   "announceImageChange": true,
