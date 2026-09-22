@@ -1,5 +1,5 @@
 {
-  "mongoURI": "",
+  "mongoURI": "mongoURI",
   "appstateSyncMinutes": 10,
   "ownerID": "100080077652459",
   "adminIDs": [
