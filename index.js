@@ -5,7 +5,6 @@
 
 const fs = require('fs-extra');
 const path = require('path');
-const mongoose = require('mongoose');
 const chalk = require('chalk');
 const moment = require('moment-timezone');
 
@@ -36,38 +35,21 @@ if (!fs.existsSync('./public')) {
   logger.system('Created public directory for web server');
 }
 
-// Connect to MongoDB
-mongoose.set('strictQuery', false);
-// [FCA-PRIYANSH FIX #46] Mask the DB URI in console (was printing full URI with password).
-// Show only host, hide credentials — safe for screenshots/logs.
-function _maskMongoUri(uri) {
-  try {
-    if (!uri || typeof uri !== 'string') return '(not set)';
-    // Hide user:pass@ part and query string
-    return uri.replace(/\/\/([^@]+)@/, '//****:****@').replace(/\?.*$/, '');
-  } catch { return '(hidden)'; }
-}
-console.log('[CONSOLE] Connecting to MongoDB:', _maskMongoUri(global.config.mongoURI));
-mongoose.connect(global.config.mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => {
-  console.log('[CONSOLE] MongoDB connection successful');
-  logger.database('Connected to MongoDB successfully');
-  
-  // Start HTTP server for preview
-  const server = require('./utils/server');
-  server.startServer();
-  
-  // Load main bot file after database connection
-  require('./main.js');
-})
-.catch(err => {
-  console.error('[CONSOLE] MongoDB connection error:', err.message);
-  logger.error('MongoDB connection error:', err.message);
-  process.exit(1);
-});
+// ==================================================
+// ✅ MONGODB DÉSACTIVÉ — ON DÉMARRE SANS ATTENDRE
+// ==================================================
+console.log('[CONSOLE] MongoDB skipped — running without database ✅');
+
+// Start HTTP server for preview
+const server = require('./utils/server');
+server.startServer();
+
+// Load main bot file directly — no MongoDB needed
+require('./main.js');
+
+// ==================================================
+// 📋 TOUT CE QUI SUIT EST IDENTIQUE À TON FICHIER
+// ==================================================
 
 // Add global error handlers for better logging
 process.on('uncaughtException', (err) => {
